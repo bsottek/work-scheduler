@@ -1,10 +1,13 @@
-var hours = $('.time-block');
 var tasks = [];
 var today = moment().format('LLLL');
 $('#currentDay').html(today);
 
+var saveTasks = function() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
 var timeCheck = function(){
+    var hours = $('.time-block');
     var desc = $('.description');
     var today = moment().format('LLLL');
     $('#currentDay').html(today);
@@ -21,6 +24,7 @@ var timeCheck = function(){
             desc[i].classList.add('present');
         }
     }
+    console.log("timeCheck ran");
 };
 
 $(".row").on("click","div.description", function () {
@@ -76,7 +80,7 @@ $(".save-btn").click(function () {
     // saveTasks();
 });
 
-setInterval(timeCheck(),60000);
+setInterval(timeCheck,60000);
 
 
 timeCheck();
