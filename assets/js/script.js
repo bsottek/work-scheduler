@@ -23,7 +23,7 @@ var timeCheck = function(){
     }
 };
 
-$(".description").on("click", function () {
+$(".row").on("click","div.description", function () {
     var text = $(this)
         .text()
         .trim();
