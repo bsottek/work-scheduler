@@ -2,6 +2,17 @@ var tasks = [];
 var today = moment().format('LLLL');
 $('#currentDay').html(today);
 
+var loadTasks = function() {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+
+    //loop through array and append values to time blocks
+    for (var i = 0; i < tasks.length; i++) {
+        var hourDesc = $('#' + tasks[i].time)[0].children[1];
+        hourDesc.innerHTML = '\n \n' + tasks[i].text + '\n';
+        
+    }
+}
+
 var saveTasks = function() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -53,19 +64,6 @@ $(".save-btn").click(function () {
     timeCheck();
 
     //     // save in tasks array
-    
-    // var arrTimeId = tasks.find((tasks, i) => {
-    //     if (tasks[i].time === timeId) {
-    //         time[i] = {text: taskText, time: timeId};
-    //         return true;
-    //     } else {
-    //         tasks.push({
-    //             text: taskText,
-    //             time: timeId
-    //     })
-    // }
-    // });
-
     if(tasks.find(x => x.time === timeId)){
         tasks.find(x => x.time === timeId).text = taskText;
     } else{
@@ -77,11 +75,12 @@ $(".save-btn").click(function () {
 
     console.log(tasks);
 
-    // saveTasks();
+    saveTasks();
 });
 
 setInterval(timeCheck,60000);
 
 
 timeCheck();
+loadTasks();
 
