@@ -1,11 +1,11 @@
-var hours = $('.time-block')
-var desc = $('.description')
+var hours = $('.time-block');
 var tasks = [];
 var today = moment().format('LLLL');
 $('#currentDay').html(today);
 
 
 var timeCheck = function(){
+    var desc = $('.description');
     var today = moment().format('LLLL');
     $('#currentDay').html(today);
 
@@ -41,10 +41,10 @@ $(".save-btn").click(function () {
 
     var description = $("<div>")
         .addClass("description col-8")
-    description.html('\n \n' + taskText + ' \n');
+        .html('\n \n' + taskText + ' \n');
     $(this.parentNode.children[1]).replaceWith(description);
 
-    timeCheck;
+    timeCheck();
 
     //     // save in tasks array
     //     tasks.toDo.push({
@@ -61,5 +61,3 @@ setInterval(timeCheck(),60000);
 
 timeCheck();
 
-
-// having trouble re-adding class to desc after save
