@@ -41,10 +41,10 @@ $(".save-btn").click(function () {
 
     var description = $("<div>")
         .addClass("description col-8")
-        .text(taskText);
+    description.html('\n \n' + taskText + ' \n');
     $(this.parentNode.children[1]).replaceWith(description);
 
-    timeCheck();
+    timeCheck;
 
     //     // save in tasks array
     //     tasks.toDo.push({
