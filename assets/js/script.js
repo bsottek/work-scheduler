@@ -25,7 +25,7 @@ var timeCheck = function(){
 
     for(var i = 0; i < hours.length; i++)   {
         var hoursInt = []
-        hoursInt[i] = parseInt(hours[i].textContent.substring(0,2));
+        hoursInt[i] = parseInt(hours[i].textContent.trim().substring(0,2));
 
         if(hoursInt[i] < parseInt(moment().format('HH'))){
             desc[i].classList.add('past');
