@@ -35,10 +35,12 @@ $(".description").on("click", function () {
 });
 
 $(".save-btn").click(function () {
-    // get form values
+    // get values for storage
     var taskText = this.parentNode.children[1].value.trim();
-    console.log(taskText);
+    var timeId = this.parentNode.id;
+    console.log(taskText, timeId);
 
+    //replace text area with desc div
     var description = $("<div>")
         .addClass("description col-8")
         .html('\n \n' + taskText + ' \n');
@@ -47,13 +49,31 @@ $(".save-btn").click(function () {
     timeCheck();
 
     //     // save in tasks array
-    //     tasks.toDo.push({
-    //         text: taskText,
-    //         date: taskDate
-    //     });
-
-    //     saveTasks();
+    
+    // var arrTimeId = tasks.find((tasks, i) => {
+    //     if (tasks[i].time === timeId) {
+    //         time[i] = {text: taskText, time: timeId};
+    //         return true;
+    //     } else {
+    //         tasks.push({
+    //             text: taskText,
+    //             time: timeId
+    //     })
     // }
+    // });
+
+    if(tasks.find(x => x.time === timeId)){
+        tasks.find(x => x.time === timeId).text = taskText;
+    } else{
+        tasks.push({
+            text: taskText,
+            time: timeId
+        });
+    }
+
+    console.log(tasks);
+
+    // saveTasks();
 });
 
 setInterval(timeCheck(),60000);
